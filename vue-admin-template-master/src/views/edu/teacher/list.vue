@@ -107,6 +107,12 @@ export default {
     this.getTeacherList()
   },
   methods: { // 创建具体的方法，调用teacher.js定义的方法
+    resetData() {
+      // 表单输入项数据清空
+      this.teacherQuery = {}
+      // 查询所有讲师数据
+      this.getTeacherList()
+    },
     // 讲师列表的方法
     getTeacherList(page = 1) {
       this.page = page
@@ -118,6 +124,29 @@ export default {
         // console.log(this.total)
       }).catch(error => { // 请求失败
         console.log(error)
+      })
+    },
+    // 删除讲师
+    removeDataById(id) {
+      this.$confirm('此操作将永久删除讲师记录, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        teacher.deleteTeacherId(id).then(response => {
+          // 提示消息
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+          // 回到列表页面
+          this.getTeacherList()
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
       })
     }
   }
