@@ -19,6 +19,29 @@ export default {
       url: `/guli/edu/teacher/delete/${id}`,
       method: 'delete'
     })
+  },
+  // 添加讲师
+  addTeacher(teacher) {
+    return request({
+      url: `/guli/edu/teacher/addTeacher`,
+      method: 'post',
+      data: teacher // 将对象转换成json传输，只需要在对象前加data
+    })
+  },
+  // 根据id查询讲师
+  getTeacherInfo(id) {
+    return request({
+      url: `/guli/edu/teacher/getTeacher/${id}`,
+      method: 'get'
+    })
+  },
+  // 修改讲师
+  updateTeacher(teacher) {
+    return request({
+      url: `/guli/edu/teacher/updateTeacher`,
+      method: 'post',
+      data: teacher
+    })
   }
 }
 
