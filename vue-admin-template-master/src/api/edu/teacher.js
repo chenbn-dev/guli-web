@@ -6,7 +6,7 @@ export default {
   getTeacherListPage(current, limit, teacherQuery) {
     return request({
       // url: '/eduservice/teacher/pageTeacherCondition/'+current+"/"+limit,
-      url: `/guli/edu/teacher/pageTeacherCondition/${current}/${limit}`,
+      url: `/edu/service/teacher/pageTeacherCondition/${current}/${limit}`,
       method: 'post',
       // teacherQuery条件对象，后端使用RequestBody获取数据
       // data表示把对象转换json进行传递到接口里面
@@ -16,14 +16,14 @@ export default {
   // 删除讲师
   deleteTeacherId(id) {
     return request({
-      url: `/guli/edu/teacher/delete/${id}`,
+      url: `/edu/service/teacher/delete/${id}`,
       method: 'delete'
     })
   },
   // 添加讲师
   addTeacher(teacher) {
     return request({
-      url: `/guli/edu/teacher/addTeacher`,
+      url: `/edu/service/teacher/addTeacher`,
       method: 'post',
       data: teacher // 将对象转换成json传输，只需要在对象前加data
     })
@@ -31,14 +31,14 @@ export default {
   // 根据id查询讲师
   getTeacherInfo(id) {
     return request({
-      url: `/guli/edu/teacher/getTeacher/${id}`,
+      url: `/edu/service/teacher/getTeacher/${id}`,
       method: 'get'
     })
   },
   // 修改讲师
   updateTeacher(teacher) {
     return request({
-      url: `/guli/edu/teacher/updateTeacher`,
+      url: `/edu/service/teacher/updateTeacher`,
       method: 'post',
       data: teacher
     })
