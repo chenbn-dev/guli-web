@@ -15,6 +15,21 @@ export default {
       url: `/edu/service/teacher/findAll`,
       method: 'get'
     })
+  },
+  // 根据课程id查询课程基本信息
+  getCourseInfoData(id) {
+    return request({
+      url: `/guli/edu/course/getCourseInfo/${id}`,
+      method: 'get'
+    })
+  },
+  // 修改课程信息
+  updateCourseInfoData(courseInfoVO) {
+    return request({
+      url: `/guli/edu/course/updateCourseInfo`,
+      method: 'post',
+      data: courseInfoVO
+    })
   }
 }
 
