@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-input v-model="filterText" placeholder="Filter keyword" style="margin-bottom:30px;" />
+    <el-input v-model="filterText" placeholder="Filter keyword" style="margin-bottom:30px;"/>
 
     <el-tree
       ref="tree2"
@@ -15,37 +15,38 @@
 </template>
 
 <script>
-import subject from '@/api/edu/subject'
-export default {
+  import subject from '@/api/edu/subject'
 
-  data() {
-    return {
-      filterText: '',
-      data2: [],
-      defaultProps: {
-        children: 'children',
-        label: 'title'
+  export default {
+
+    data() {
+      return {
+        filterText: '',
+        data2: [],
+        defaultProps: {
+          children: 'children',
+          label: 'title'
+        }
+      }
+    },
+    watch: {
+      filterText(val) {
+        this.$refs.tree2.filter(val)
+      }
+    },
+    created() {
+      this.getAllSubjectDataList()
+    },
+    methods: {
+      getAllSubjectDataList() {
+        subject.getAllSubjectData().then(response => {
+          this.data2 = response.data.list
+        })
+      },
+      filterNode(value, data) {
+        if (!value) return true
+        return data.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
       }
     }
-  },
-  watch: {
-    filterText(val) {
-      this.$refs.tree2.filter(val)
-    }
-  },
-  created() {
-    this.getAllSubjectDataList()
-  },
-  methods: {
-    getAllSubjectDataList() {
-      subject.getAllSubjectData().then(response => {
-        this.data2 = response.data.list
-      })
-    },
-    filterNode(value, data) {
-      if (!value) return true
-      return data.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
-    }
   }
-}
 </script>

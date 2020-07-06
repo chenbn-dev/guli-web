@@ -39,77 +39,84 @@
       <el-button @click="previous">上一步</el-button>
       <el-button :disabled="saveBtnDisabled" type="primary" @click="next">下一步</el-button>
     </div>
-</div></template>
+  </div>
+</template>
 <script>
-import chapter from '@/api/edu/chapter'
-export default {
-  data() {
-    return {
-      saveBtnDisabled: false, // 保存按钮是否禁用
-      chapterVideoList: [],
-      courseId: ''
-    }
-  },
-  created() {
-    // 获取到路由中的id值
-    if (this.$route.params && this.$route.params.id) {
-      this.courseId = this.$route.params.id
-      this.getChapterVideo()
-    }
-  },
-  methods: {
-    // 根据课程id查询章节和小节的列表
-    getChapterVideo() {
-      chapter.gerAllChapterVideo(this.courseId).then(response => {
-        this.chapterVideoList = response.data.allChapterVideo
-      })
+  import chapter from '@/api/edu/chapter'
+
+  export default {
+    data() {
+      return {
+        saveBtnDisabled: false, // 保存按钮是否禁用
+        chapterVideoList: [],
+        courseId: ''
+      }
     },
-    previous() {
-      console.log('previous')
-      this.$router.push({ path: '/course/info/1' })
+    created() {
+      // 获取到路由中的id值
+      if (this.$route.params && this.$route.params.id) {
+        this.courseId = this.$route.params.id
+        this.getChapterVideo()
+      }
     },
-    next() {
-      console.log('next')
-      this.$router.push({ path: '/course/publish/1' })
+    methods: {
+      // 根据课程id查询章节和小节的列表
+      getChapterVideo() {
+        chapter.gerAllChapterVideo(this.courseId).then(response => {
+          this.chapterVideoList = response.data.allChapterVideo
+        })
+      },
+      previous() {
+        console.log('previous')
+        this.$router.push({path: '/course/info/' + this.courseId})
+      },
+      next() {
+        console.log('next')
+        this.$router.push({path: '/course/publish/' + this.courseId})
+      }
     }
   }
-}
 </script>
 <style scoped>
-.chanpterList{
+  .chanpterList {
     position: relative;
     list-style: none;
     margin: 0;
     padding: 0;
-}
-.chanpterList li{
-  position: relative;
-}
-.chanpterList p{
-  float: left;
-  font-size: 20px;
-  margin: 10px 0;
-  padding: 10px;
-  height: 70px;
-  line-height: 50px;
-  width: 100%;
-  border: 1px solid #DDD;
-}
-.chanpterList .acts {
+  }
+
+  .chanpterList li {
+    position: relative;
+  }
+
+  .chanpterList p {
+    float: left;
+    font-size: 20px;
+    margin: 10px 0;
+    padding: 10px;
+    height: 70px;
+    line-height: 50px;
+    width: 100%;
+    border: 1px solid #DDD;
+  }
+
+  .chanpterList .acts {
     float: right;
     font-size: 14px;
-}
-.videoList{
-  padding-left: 50px;
-}
-.videoList p{
-  float: left;
-  font-size: 14px;
-  margin: 10px 0;
-  padding: 10px;
-  height: 50px;
-  line-height: 30px;
-  width: 100%;
-  border: 1px dotted #DDD;
-}
+  }
+
+  .videoList {
+    padding-left: 50px;
+  }
+
+  .videoList p {
+    float: left;
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 10px;
+    height: 50px;
+    line-height: 30px;
+    width: 100%;
+    border: 1px dotted #DDD;
+  }
 </style>
