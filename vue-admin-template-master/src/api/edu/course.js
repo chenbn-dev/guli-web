@@ -30,6 +30,13 @@ export default {
       method: 'post',
       data: courseInfoVO
     })
+  },
+  // 课程确认信息显示
+  getPublishCourseInfo(id) {
+    return request({
+      url: `/guli/edu/course/getPublishCourseInfo/${id}`,
+      method: 'get'
+    })
   }
 }
 
