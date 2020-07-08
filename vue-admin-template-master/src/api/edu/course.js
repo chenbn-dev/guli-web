@@ -37,6 +37,13 @@ export default {
       url: `/guli/edu/course/getPublishCourseInfo/${id}`,
       method: 'get'
     })
+  },
+  // 课程最终发布，修改课程状态
+  publishCourse(id) {
+    return request({
+      url: `/guli/edu/course/publishCourse/${id}`,
+      method: 'post'
+    })
   }
 }
 

@@ -41,7 +41,6 @@ export default {
     // 获取路由中的课程id
     if (this.$route.params && this.$route.params.id) {
       this.courseId = this.$route.params.id
-      alert(this.courseId)
       //调用接口方法根据课程id查询
       this.getCoursePublishId()
     }
@@ -50,17 +49,23 @@ export default {
   methods: {
     // 根据课程id查询课程确认信息
     getCoursePublishId() {
-      alert(1)
       course.getPublishCourseInfo(this.courseId).then(response => {
         this.publishCourse = response.data.publishCourse
-        alert(JSON.stringify(this.publishCourse))
       })
     },
     previous() {
       this.$router.push({ path: '/course/chapter/' + this.courseId })
     },
     publish() {
-      this.$router.push({ path: '/course/list' + this.courseId })
+      course.publishCourse(this.courseId).then(response => {
+        //提示
+        this.$message({
+          type: 'success',
+          message: '课程发布成功!'
+        });
+        //跳转课程列表页面
+        this.$router.push({ path: '/course/list' })
+      })
     }
   }
 }
