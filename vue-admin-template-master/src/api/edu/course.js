@@ -4,7 +4,7 @@ export default {
   //  1.添加课程基本信息
   addCourseInfo(courseInfo) {
     return request({
-      url: `/guli/edu/course/addCourseInfo`,
+      url: `/edu/service/course/addCourseInfo`,
       method: 'post',
       data: courseInfo
     })
@@ -19,14 +19,14 @@ export default {
   // 根据课程id查询课程基本信息
   getCourseInfoData(id) {
     return request({
-      url: `/guli/edu/course/getCourseInfo/${id}`,
+      url: `/edu/service/course/getCourseInfo/${id}`,
       method: 'get'
     })
   },
   // 修改课程信息
   updateCourseInfoData(courseInfoVO) {
     return request({
-      url: `/guli/edu/course/updateCourseInfo`,
+      url: `/edu/service/course/updateCourseInfo`,
       method: 'post',
       data: courseInfoVO
     })
@@ -34,15 +34,24 @@ export default {
   // 课程确认信息显示
   getPublishCourseInfo(id) {
     return request({
-      url: `/guli/edu/course/getPublishCourseInfo/${id}`,
+      url: `/edu/service/course/getPublishCourseInfo/${id}`,
       method: 'get'
     })
   },
   // 课程最终发布，修改课程状态
   publishCourse(id) {
     return request({
-      url: `/guli/edu/course/publishCourse/${id}`,
+      url: `/edu/service/course/publishCourse/${id}`,
       method: 'post'
+    })
+  },
+  //TODO 课程列表
+
+  //
+  getListCourse() {
+    return request({
+      url: `/edu/service/course`,
+      method: 'get'
     })
   }
 }
