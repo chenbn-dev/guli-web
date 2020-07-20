@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import id from "element-ui/src/locale/lang/id";
+// import id from "element-ui/src/locale/lang/id";
 
 export default {
   //查询课程条件分页
@@ -18,7 +18,7 @@ export default {
     })
   },
   // 课程详情的方法
-  getCourseInfo() {
+  getCourseInfo(id) {
     return request({
       url: `/edu/service/coursefront/getFrontCourseInfo/${id}`,
       method: 'get'
